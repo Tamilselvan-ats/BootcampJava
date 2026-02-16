@@ -1,5 +1,17 @@
-public class OOPS {
+
+
+
+
+public class Oops {
     public static void main(String[] args) {
-        System.out.println("OOPS (Object-Oriented Programming System)");
+
+        System.out.println(" *****    *****    *****    ***** ");
+        System.out.println("*     *  *     *  *     *  *     *");
+        System.out.println("*     *  *     *  *     *  *      ");
+        System.out.println("*     *  *     *  *****    *****  ");
+        System.out.println("*     *  *     *  *             * ");
+        System.out.println("*     *  *     *  *             * ");
+        System.out.println(" *****    *****    *       *****  ");
+
     }
 }
