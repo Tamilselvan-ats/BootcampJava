@@ -1,7 +1,7 @@
-public class Oops {
+public class OOPS {
     public static void main(String[] args) {
 
-        String[] lines = {
+        String output = String.join("\n",
             " *****    *****    *****    ***** ",
             "*     *  *     *  *     *  *     *",
             "*     *  *     *  *     *  *      ",
@@ -9,8 +9,9 @@ public class Oops {
             "*     *  *     *  *             * ",
             "*     *  *     *  *             * ",
             " *****    *****    *       *****  "
-        };
+        );
 
-        System.out.println(String.join("\n", lines));
+        System.out.println(output);
+
     }
 }
