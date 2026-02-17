@@ -1,18 +1,21 @@
-
-public class OOPS{
+public class OOPS {
     public static void main(String[] args) {
 
-        System.out.println(" *****    *****    *****    ***** ");
-        System.out.println("*     *  *     *  *     *  *     *");
-        System.out.println("*     *  *     *  *     *  *      ");
-        System.out.println("*     *  *     *  *****    *****  ");
-        System.out.println("*     *  *     *  *             * ");
-        System.out.println("*     *  *     *  *             * ");
-        System.out.println(" *****    *****    *       *****  ");
+        String[] lines = {
+            " *****    *****    *****    ***** ",
+            "*     *  *     *  *     *  *     *",
+            "*     *  *     *  *     *  *      ",
+            "*     *  *     *  *****    *****  ",
+            "*     *  *     *  *             * ",
+            "*     *  *     *  *             * ",
+            " *****    *****    *       *****  "
+        };
 
+        for(String line:lines){
+            System.out.println(line);
+            }
     }
 }
-
 
 
 
