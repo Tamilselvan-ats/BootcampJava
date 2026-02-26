@@ -1,51 +1,22 @@
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * BannerAppUC7.java
+ * BannerAppUC8.java
  *
- * UC7 - Store Character Pattern in a Class (using inner static class)
+ * UC8 - Use Map for Character Patterns and Render via Function
  *
- * Compile: javac BannerAppUC7.java
- * Run:     java BannerAppUC7
+ * Compile: javac BannerAppUC8.java
+ * Run:     java BannerAppUC8
  */
 public class OOPS {
 
     /**
-     * Inner static class to encapsulate a character and its 7-line banner pattern.
+     * Build and return a HashMap of character -> 7-line pattern.
      */
-    public static class CharacterPatternMap {
-        private final char character;
-        private final String[] pattern; // 7-line ASCII art pattern
+    public static Map<Character, String[]> buildPatternMap() {
+        Map<Character, String[]> map = new HashMap<>();
 
-        /**
-         * Constructor
-         *
-         * @param character the character this pattern represents
-         * @param pattern   7-line string array representing the banner
-         */
-        public CharacterPatternMap(char character, String[] pattern) {
-            if (pattern == null || pattern.length != 7) {
-                throw new IllegalArgumentException("Pattern must be a 7-line array.");
-            }
-            this.character = character;
-            this.pattern = pattern.clone();
-        }
-
-        public char getCharacter() {
-            return character;
-        }
-
-        public String[] getPattern() {
-            return pattern.clone();
-        }
-    }
-
-    /**
-     * Initialize an array of CharacterPatternMap objects (linear container).
-     * In UC7 we simulate the manual creation and linear search retrieval.
-     */
-    private static CharacterPatternMap[] initCharacterPatternArray() {
-        CharacterPatternMap[] arr = new CharacterPatternMap[3];
-
-        // 'O' pattern (7 lines, fixed width)
         String[] oPattern = new String[] {
             " ***** ",
             "*     *",
@@ -56,7 +27,6 @@ public class OOPS {
             " ***** "
         };
 
-        // 'P' pattern
         String[] pPattern = new String[] {
             "****** ",
             "*     *",
@@ -67,7 +37,6 @@ public class OOPS {
             "*      "
         };
 
-        // 'S' pattern
         String[] sPattern = new String[] {
             " ***** ",
             "*      ",
@@ -78,55 +47,40 @@ public class OOPS {
             " ***** "
         };
 
-        arr[0] = new CharacterPatternMap('O', oPattern);
-        arr[1] = new CharacterPatternMap('P', pPattern);
-        arr[2] = new CharacterPatternMap('S', sPattern);
+        map.put('O', oPattern);
+        map.put('P', pPattern);
+        map.put('S', sPattern);
 
-        return arr;
+        return map;
     }
 
     /**
-     * Linear search to retrieve pattern for a given character from the array.
+     * Display the message in banner form using the provided pattern map.
      *
-     * @param arr array of CharacterPatternMap
-     * @param ch  character to find
-     * @return 7-line pattern or a blank 7-line pattern if not found
+     * @param message the message to render (e.g., "OOPS")
+     * @param map     mapping from Character -> 7-line pattern
      */
-    private static String[] lookupPattern(CharacterPatternMap[] arr, char ch) {
-        for (CharacterPatternMap entry : arr) {
-            if (entry.getCharacter() == ch) {
-                return entry.getPattern();
-            }
-        }
-        // return blank 7-line pattern if not found
-        String[] blank = new String[7];
-        for (int i = 0; i < 7; i++) blank[i] = "       ";
-        return blank;
-    }
-
-    /**
-     * Display the banner for a message (like "OOPS") using the array and linear lookup.
-     *
-     * @param message string message to display in banner
-     * @param arr     array of CharacterPatternMap
-     */
-    private static void displayBanner(String message, CharacterPatternMap[] arr) {
+    public static void displayBanner(String message, Map<Character, String[]> map) {
         message = message.toUpperCase();
-        // For each of the 7 rows
         for (int row = 0; row < 7; row++) {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < message.length(); i++) {
                 char ch = message.charAt(i);
-                String[] pat = lookupPattern(arr, ch);
-                sb.append(pat[row]);
-                if (i < message.length() - 1) sb.append("  "); // spacing between letters
+                String[] pat = map.get(ch);
+                if (pat == null) {
+                    // fallback: blank 7-char space if pattern not present
+                    sb.append("       ");
+                } else {
+                    sb.append(pat[row]);
+                }
+                if (i < message.length() - 1) sb.append("  "); // spacing
             }
             System.out.println(sb.toString());
         }
     }
 
     public static void main(String[] args) {
-        CharacterPatternMap[] patterns = initCharacterPatternArray();
-        displayBanner("OOPS", patterns);
+        Map<Character, String[]> patternMap = buildPatternMap();
+        displayBanner("OOPS", patternMap);
     }
 }
